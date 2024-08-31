@@ -1,6 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>registro</ion-title>
+    <a [routerLink]="['/home']">
+      <ion-icon name="home" size="large"></ion-icon>
+    </a>
   </ion-toolbar>
 </ion-header>
   
@@ -21,7 +23,7 @@
         placeholder="Ingrese su nombre">
       </ion-input>
     </ion-item>
-    
+    <br>
     <ion-item>
       <ion-input 
         label="Apellido Paterno" 
@@ -30,7 +32,7 @@
         placeholder="Ingrese primer apellido">
       </ion-input>
     </ion-item>
-
+    <br>
     <ion-item>
       <ion-input 
         label="Apellido Materno" 
@@ -39,7 +41,7 @@
         placeholder="Ingrese segundo apellido">
       </ion-input>
     </ion-item>
-
+    <br>
     <ion-item>
       <ion-input 
         label="Correo Electrónico" 
@@ -49,7 +51,7 @@
         placeholder="Ingrese su correo">
       </ion-input>
     </ion-item>
-
+    <br>
     <ion-item>
       <ion-input 
         label="Contraseña" 
@@ -59,7 +61,7 @@
         placeholder="Ingrese su contraseña">
       </ion-input>
     </ion-item>
-
+    <br>
     <ion-item>
       <ion-input 
         label="Repita su contraseña" 
@@ -69,7 +71,7 @@
         placeholder="Repita su contraseña">
       </ion-input>
     </ion-item>
-
+    <br>
 
       <ion-item>
         <ion-label>Seleccione una pregunta secreta</ion-label>
@@ -80,7 +82,7 @@
         </ion-select>
       </ion-item>
 
-
+      <br>
     <ion-item>
       <ion-input 
         label="Respuesta secreta" 
@@ -90,7 +92,7 @@
         placeholder="Ingrese su respuesta secreta">
       </ion-input>
     </ion-item>
-
+    <br>
     <ion-button expand="full" type="submit">
       Enviar
     </ion-button>
