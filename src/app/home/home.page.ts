@@ -6,7 +6,31 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  actionSheetButtons = [
+    {
+      text: 'Delete',
+      role: 'destructive',
+      icon: 'trash',
+      handler: () => {
+        console.log('Delete clicked');
+      }
+    },
+    {
+      text: 'Share',
+      icon: 'share',
+      handler: () => {
+        console.log('Share clicked');
+      }
+    },
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => {
+        console.log('Cancel clicked');
+      }
+    }
+  ];
 
   constructor() {}
-
 }
+
