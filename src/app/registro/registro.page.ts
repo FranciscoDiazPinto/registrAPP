@@ -10,6 +10,7 @@ export class RegistroPage implements OnInit {
   nombre: string = '';
   apellidoPaterno: string = '';
   apellidoMaterno: string = '';
+  rut: string ='';
   email: string = '';
   password: string = '';
   respuestaSecreta: string = '';
@@ -29,6 +30,7 @@ export class RegistroPage implements OnInit {
       nombre: this.nombre,
       apellidoPaterno: this.apellidoPaterno,
       apellidoMaterno: this.apellidoMaterno,
+      rut: this.rut,
       email: this.email,
       password: this.password,
       respuestaSecreta: this.respuestaSecreta

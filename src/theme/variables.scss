@@ -7,4 +7,7 @@
   ion-button {
     --background: #000000; /* Color de fondo negro */
     --color: #ffffff; /* Color de texto blanco */
+    &:active {
+      background-color: #706766cc; /* Color cuando el botón es presionado */
+    }
   }
