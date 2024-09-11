@@ -22,7 +22,15 @@ const routes: Routes = [
   {
     path: 'recuperar',
     loadChildren: () => import('./recuperar/recuperar.module').then( m => m.RecuperarPageModule)
+  },  {
+    path: 'nombre-de-la-pagina',
+    loadChildren: () => import('./nombre-de-la-pagina/nombre-de-la-pagina.module').then( m => m.NombreDeLaPaginaPageModule)
   },
+  {
+    path: 'index2',
+    loadChildren: () => import('./index2/index2.module').then( m => m.Index2PageModule)
+  },
+
 ];
 
 @NgModule({
