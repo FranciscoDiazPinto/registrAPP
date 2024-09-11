@@ -1,0 +1,21 @@
+.menu {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    flex-wrap: wrap; /* Permite que las tarjetas se ajusten si son muchas */
+    gap: 20px; /* Espacio entre las tarjetas */
+    margin: 0 auto; /* Asegura que el contenedor esté centrado */
+  }
+  
+  ion-card {
+    width: 300px; /* Ajusta el ancho de las tarjetas */
+    text-align: center; /* Centra el texto dentro de la tarjeta */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra para darle profundidad */
+  }
+  
+  ion-card img {
+    width: 100%; /* Asegura que las imágenes ocupen todo el ancho de la tarjeta */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 8px; /* Bordes redondeados para las imágenes */
+  }
+  
