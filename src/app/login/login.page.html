@@ -7,29 +7,18 @@
 </ion-header>
 
 
-<ion-content>
-  <form class="login-form">
+<ion-content class="ion-padding">
+  <form (ngSubmit)="onLogin()" class="login-form">
     <ion-item>
-      <ion-input 
-        label="Correo Electrónico" 
-        label-placement="floating" 
-        fill="outline" >
-      </ion-input>
-    </ion-item>
-  <br>
-    <ion-item>
-      <ion-input 
-        label="Contraseña" 
-        label-placement="floating" 
-        fill="outline" 
-        type="password"
-        placeholder="Ingrese su respuesta secreta">
-      </ion-input>
+      <ion-input [(ngModel)]="email" name="email" label="Correo Electrónico" label-placement="floating" fill="outline" placeholder="Ingrese su correo"></ion-input>
     </ion-item>
     <br>
-
-      <a [routerLink]="['/recuperar']">¿Olvidaste tu contraseña?</a>
-
-
+    <ion-item>
+      <ion-input [(ngModel)]="password" name="password" label="Contraseña" label-placement="floating" fill="outline" type="password" placeholder="Ingrese su contraseña"></ion-input>
+    </ion-item>
+    <br>
+    <ion-button expand="full" type="submit">Login</ion-button>
+    <br>
+    <a [routerLink]="['/recuperar']">¿Olvidaste tu contraseña?</a>
   </form>
 </ion-content>

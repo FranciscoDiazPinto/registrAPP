@@ -5,89 +5,32 @@
     </a>
   </ion-toolbar>
 </ion-header>
-  
 <ion-content class="ion-padding">
-  <form class="registro-form">    
+  <form (ngSubmit)="onRegister()"class="registro-form">
     <ion-item>
-      <ion-input 
-        label="Nombre" 
-        label-placement="floating" 
-        fill="outline" 
-        placeholder="Ingrese su nombre">
-      </ion-input>
+      <ion-input [(ngModel)]="nombre" name="nombre" label="Nombre" label-placement="floating" fill="outline" placeholder="Ingrese su nombre"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-input 
-        label="Apellido Paterno" 
-        label-placement="floating" 
-        fill="outline" 
-        placeholder="Ingrese primer apellido">
-      </ion-input>
+      <ion-input [(ngModel)]="apellidoPaterno" name="apellidoPaterno" label="Apellido Paterno" label-placement="floating" fill="outline" placeholder="Ingrese primer apellido"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-input 
-        label="Apellido Materno" 
-        label-placement="floating" 
-        fill="outline" 
-        placeholder="Ingrese segundo apellido">
-      </ion-input>
+      <ion-input [(ngModel)]="apellidoMaterno" name="apellidoMaterno" label="Apellido Materno" label-placement="floating" fill="outline" placeholder="Ingrese segundo apellido"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-input 
-        label="Correo Electrónico" 
-        label-placement="floating" 
-        fill="outline" 
-        type="email"
-        placeholder="Ingrese su correo">
-      </ion-input>
+      <ion-input [(ngModel)]="email" name="email" label="Correo Electrónico" label-placement="floating" fill="outline" type="email" placeholder="Ingrese su correo"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-input 
-        label="Contraseña" 
-        label-placement="floating" 
-        fill="outline" 
-        type="password"
-        placeholder="Ingrese su contraseña">
-      </ion-input>
+      <ion-input [(ngModel)]="password" name="password" label="Contraseña" label-placement="floating" fill="outline" type="password" placeholder="Ingrese su contraseña"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-input 
-        label="Repita su contraseña" 
-        label-placement="floating" 
-        fill="outline" 
-        type="password"
-        placeholder="Repita su contraseña">
-      </ion-input>
+      <ion-input [(ngModel)]="respuestaSecreta" name="respuestaSecreta" label="Respuesta secreta" label-placement="floating" fill="outline" placeholder="Ingrese su respuesta secreta"></ion-input>
     </ion-item>
     <br>
-
-      <ion-item>
-        <ion-label>Seleccione una pregunta secreta</ion-label>
-        <ion-select placeholder="Seleccione uno" (ionChange)="onSelectChange($event)">
-          <ion-select-option value="opcion1">¿Cual es el nombre de tu madre?</ion-select-option>
-          <ion-select-option value="opcion2">¿Cual es el apellido de tu padre?</ion-select-option>
-          <ion-select-option value="opcion3">¿Cual fue el nombre de tu primera mascota?</ion-select-option>
-        </ion-select>
-      </ion-item>
-
-      <br>
-    <ion-item>
-      <ion-input 
-        label="Respuesta secreta" 
-        label-placement="floating" 
-        fill="outline" 
-        type="password"
-        placeholder="Ingrese su respuesta secreta">
-      </ion-input>
-    </ion-item>
-    <br>
-    <ion-button expand="full" type="submit">
-      Enviar
-    </ion-button>
+    <ion-button expand="full" type="submit">Registrar</ion-button>
   </form>
 </ion-content>
