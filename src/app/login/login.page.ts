@@ -27,7 +27,9 @@ export class LoginPage implements OnInit {
 
     // Verificar si el usuario existe y las credenciales coinciden
     if (usuarioGuardado && usuarioGuardado.email === this.email && usuarioGuardado.password === this.password) {
-      alert('Login exitoso');
+      const mensajeBienvenida = `Bienvenido ${usuarioGuardado.nombre} ${usuarioGuardado.apellidoPaterno}`;
+
+      alert(mensajeBienvenida);
       
       // Redirigir a la página principal o dashboard
       this.router.navigate(['/index2']);  // Redirige a la página deseada
