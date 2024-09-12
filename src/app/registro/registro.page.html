@@ -38,6 +38,15 @@
     </ion-item>
     <br>
     <ion-item>
+      <ion-label>Pregunta Secreta</ion-label>
+      <ion-select [(ngModel)]="preguntaSecreta" name="preguntaSecreta" placeholder="Selecciona una opción">
+        <ion-select-option value="colorFavorito">¿Cuál es tu color favorito?</ion-select-option>
+        <ion-select-option value="nombreMascota">¿Cómo se llama tu primera mascota?</ion-select-option>
+        <ion-select-option value="lugarNacimiento">¿En qué ciudad naciste?</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <br>
+    <ion-item>
       <ion-input [(ngModel)]="respuestaSecreta" name="respuestaSecreta" label="Respuesta secreta" label-placement="floating" fill="outline" placeholder="Ingrese su respuesta secreta"></ion-input>
     </ion-item>
     <br>

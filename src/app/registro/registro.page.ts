@@ -13,6 +13,7 @@ export class RegistroPage implements OnInit {
   rut: string ='';
   email: string = '';
   password: string = '';
+  preguntaSecreta: string= '';
   respuestaSecreta: string = '';
 
   constructor() { }
@@ -33,6 +34,7 @@ export class RegistroPage implements OnInit {
       rut: this.rut,
       email: this.email,
       password: this.password,
+      preguntaSecreta: this.preguntaSecreta,
       respuestaSecreta: this.respuestaSecreta
     };
 
