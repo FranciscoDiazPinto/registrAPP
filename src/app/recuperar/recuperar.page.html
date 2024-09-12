@@ -6,10 +6,29 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">recuperar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <br>
+  <br>
+  <form (ngSubmit)="onRecoverPassword()" class="recover-form">
+    <h1>Recuperar Contraseña</h1>
+    <br>
+    <ion-item>
+      <ion-input [(ngModel)]="rut" name="rut" label="Rut" label-placement="floating" fill="outline" placeholder="Ingrese su RUT"></ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label>Pregunta Secreta</ion-label>
+      <ion-select [(ngModel)]="preguntaSecreta" name="preguntaSecreta" placeholder="Selecciona una opción">
+        <ion-select-option value="colorFavorito">¿Cuál es tu color favorito?</ion-select-option>
+        <ion-select-option value="nombreMascota">¿Cómo se llama tu primera mascota?</ion-select-option>
+        <ion-select-option value="lugarNacimiento">¿En qué ciudad naciste?</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-input [(ngModel)]="respuestaSecreta" name="respuestaSecreta" label="Respuesta Secreta" label-placement="floating" fill="outline" placeholder="Ingrese su respuesta secreta"></ion-input>
+    </ion-item>
+    <br>
+    <ion-button expand="full" type="submit">Recuperar Contraseña</ion-button>
+  </form>
 </ion-content>
