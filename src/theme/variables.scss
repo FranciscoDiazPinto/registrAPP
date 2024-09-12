@@ -3,6 +3,7 @@
 :root {
     --ion-toolbar-background: #000000; // Cambiar color de fondo del toolbar
     --ion-toolbar-color: white; // Cambiar color del texto en el toolbar
+    --ion-font-family: 'My custom font';
   }
   ion-button {
     --background: #000000; /* Color de fondo negro */
@@ -10,4 +11,11 @@
     &:active {
       background-color: #706766cc; /* Color cuando el botón es presionado */
     }
+  }
+
+  @font-face {
+    font-family: 'My custom font';
+    src: url('../assets/fonts/Jungle\ Rumble\ V.02.ttf');
+    font-style: normal;
+    font-weight: normal;
   }
