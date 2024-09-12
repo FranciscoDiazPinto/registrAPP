@@ -33,27 +33,42 @@ export class RegistroPage implements OnInit {
       // Mostrar un mensaje de error si algún campo está vacío
       alert('Por favor, complete todos los campos antes de registrar.');
       return; // Detener la ejecución si hay campos vacíos
-    } else {
-      // Guardar los datos en Local Storage
-      const usuario = {
-        nombre: this.nombre,
-        apellidoPaterno: this.apellidoPaterno,
-        apellidoMaterno: this.apellidoMaterno,
-        rut: this.rut,
-        email: this.email,
-        password: this.password,
-        preguntaSecreta: this.preguntaSecreta,
-        respuestaSecreta: this.respuestaSecreta
-      };
-  
-      // Guardamos el objeto del usuario en Local Storage
-      localStorage.setItem('usuario', JSON.stringify(usuario));
-  
-      // Mensaje de confirmación
-      alert('Registro exitoso. Ahora puede iniciar sesión.');
-      
-      // Redirigir a la página de inicio
-      this.router.navigate(['/home']);
     }
+  
+    // Validar formato del correo electrónico
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(this.email)) {
+      alert('Por favor, ingrese un correo electrónico válido.');
+      return;
+    }
+  
+    // Validar contraseña: al menos 8 caracteres y debe ser alfanumérica
+    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    if (!passwordPattern.test(this.password)) {
+      alert('La contraseña debe tener al menos 8 caracteres y debe ser alfanumérica.');
+      return;
+    }
+  
+    // Guardar los datos en Local Storage
+    const usuario = {
+      nombre: this.nombre,
+      apellidoPaterno: this.apellidoPaterno,
+      apellidoMaterno: this.apellidoMaterno,
+      rut: this.rut,
+      email: this.email,
+      password: this.password,
+      preguntaSecreta: this.preguntaSecreta,
+      respuestaSecreta: this.respuestaSecreta
+    };
+  
+    // Guardamos el objeto del usuario en Local Storage
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+  
+    // Mensaje de confirmación
+    alert('Registro exitoso. Ahora puede iniciar sesión.');
+    
+    // Redirigir a la página de inicio
+    this.router.navigate(['/home']);
   }
+  
 }  
