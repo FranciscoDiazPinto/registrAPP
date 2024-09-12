@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';  // Asegúrate de importar Router
 
 @Component({
   selector: 'app-registro',
@@ -10,13 +11,14 @@ export class RegistroPage implements OnInit {
   nombre: string = '';
   apellidoPaterno: string = '';
   apellidoMaterno: string = '';
-  rut: string ='';
+  rut: string = '';
   email: string = '';
   password: string = '';
-  preguntaSecreta: string= '';
+  preguntaSecreta: string = '';
   respuestaSecreta: string = '';
 
-  constructor() { }
+  // Inyecta el servicio Router en el constructor
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -43,5 +45,8 @@ export class RegistroPage implements OnInit {
 
     // Mensaje de confirmación
     alert('Registro exitoso. Ahora puede iniciar sesión.');
+    
+    // Redirigir a la página de inicio
+    this.router.navigate(['/home']);
   }
 }
