@@ -17,8 +17,14 @@ export class RecuperarPage implements OnInit {
   ngOnInit() {}
 
   onRecoverPassword() {
+    // Verificar que los campos necesarios no estén vacíos
+    if (!this.rut || !this.preguntaSecreta || !this.respuestaSecreta) {
+      alert('Por favor, complete todos los campos antes de intentar recuperar la contraseña.');
+      return; // Detener la ejecución si hay campos vacíos
+    }
+  
     const usuarioGuardado = JSON.parse(localStorage.getItem('usuario') || '{}');
-
+  
     // Verificar si el RUT y la pregunta secreta coinciden con el usuario registrado
     if (usuarioGuardado && usuarioGuardado.rut === this.rut && 
         usuarioGuardado.preguntaSecreta === this.preguntaSecreta &&
@@ -34,4 +40,5 @@ export class RecuperarPage implements OnInit {
       alert('Los datos proporcionados no coinciden.');
     }
   }
+  
 }
