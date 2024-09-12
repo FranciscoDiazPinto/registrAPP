@@ -6,21 +6,20 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="ion-padding">
-<br>
-<br>
+  <br>
+  <br>
   <form (ngSubmit)="onLogin()" class="login-form">
     <br>
     <h1>Inicio de Sesión</h1>
     <br>
     <br>
     <ion-item>
-      <ion-input [(ngModel)]="email" name="email" label="Correo Electrónico" label-placement="floating" fill="outline" placeholder="Ingrese su correo"></ion-input>
+      <ion-input [(ngModel)]="email" name="email" label="Correo Electrónico" label-placement="floating" fill="outline" placeholder="Ingrese su correo" required></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-input [(ngModel)]="password" name="password" label="Contraseña" label-placement="floating" fill="outline" type="password" placeholder="Ingrese su contraseña"></ion-input>
+      <ion-input [(ngModel)]="password" name="password" label="Contraseña" label-placement="floating" fill="outline" type="password" placeholder="Ingrese su contraseña" required></ion-input>
     </ion-item>
     <br>
     <ion-button expand="full" type="submit">Login</ion-button>

@@ -17,6 +17,12 @@ export class LoginPage implements OnInit {
   }
 
   onLogin() {
+    // Verificar que los campos no estén vacíos
+    if (!this.email || !this.password) {
+      alert('Por favor, complete todos los campos.');
+      return;
+    }
+
     const usuarioGuardado = JSON.parse(localStorage.getItem('usuario') || '{}');
 
     // Verificar si el usuario existe y las credenciales coinciden
