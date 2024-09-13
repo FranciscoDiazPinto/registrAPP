@@ -56,3 +56,12 @@
   left: 10px; /* Ajusta la distancia desde el borde izquierdo */
 }
 
+.login-button,
+.registro-button {
+  transition: transform 0.3s ease; /* Añade una transición suave */
+}
+
+.login-button:hover,
+.registro-button:hover {
+  transform: rotate(360deg); /* Gira el botón 360 grados en el hover */
+}
