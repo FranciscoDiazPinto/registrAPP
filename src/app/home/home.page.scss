@@ -61,7 +61,7 @@
   transition: transform 0.3s ease; /* Añade una transición suave */
 }
 
-.login-button:hover,
-.registro-button:hover {
-  transform: rotate(360deg); /* Gira el botón 360 grados en el hover */
+.login-button:active,
+.registro-button:active {
+  transform: rotate(360deg); /* Gira el botón 360 grados al hacer clic */
 }
