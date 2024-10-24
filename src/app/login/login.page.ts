@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';  // Importa Router
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';  // Importa el servicio
 
 @Component({
   selector: 'app-login',
@@ -8,33 +9,34 @@ import { Router } from '@angular/router';  // Importa Router
 })
 export class LoginPage implements OnInit {
 
-  email: string = '';
+  username: string = '';  // Cambiado de email a username
   password: string = '';
+  groupId: number = 10;   // Definir el groupId fijo
 
-  constructor(private router: Router) { }  // Inyecta Router
+  constructor(private router: Router, private authService: AuthService) { }  // Inyecta AuthService
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onLogin() {
     // Verificar que los campos no estén vacíos
-    if (!this.email || !this.password) {
+    if (!this.username || !this.password) {
       alert('Por favor, complete todos los campos.');
       return;
     }
 
-    const usuarioGuardado = JSON.parse(localStorage.getItem('usuario') || '{}');
-
-    // Verificar si el usuario existe y las credenciales coinciden
-    if (usuarioGuardado && usuarioGuardado.email === this.email && usuarioGuardado.password === this.password) {
-      const mensajeBienvenida = `Bienvenido ${usuarioGuardado.nombre} ${usuarioGuardado.apellidoPaterno}`;
-
-      alert(mensajeBienvenida);
-      
-      // Redirigir a la página principal o dashboard
-      this.router.navigate(['/index2']);  // Redirige a la página deseada
-    } else {
-      alert('Correo o contraseña incorrectos');
-    }
+    // Llamar al servicio de autenticación para hacer login
+    this.authService.login(this.username, this.password, this.groupId).subscribe({
+      next: (response) => {
+        console.log('Login exitoso:', response);
+        alert(`Bienvenido ${this.username}`);
+        
+        // Redirigir a la página principal o dashboard
+        this.router.navigate(['/index2']);
+      },
+      error: (err) => {
+        console.error('Error de login:', err);
+        alert('Usuario o contraseña incorrectos');
+      }
+    });
   }
 }
