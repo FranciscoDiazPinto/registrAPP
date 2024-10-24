@@ -5,51 +5,68 @@
     </a>
   </ion-toolbar>
 </ion-header>
+
 <ion-content class="ion-padding">
   <br>
   <br>
-  <form (ngSubmit)="onRegister()"class="registro-form">
+  <form (ngSubmit)="onRegister()" class="registro-form">
     <br>
-    <h1>Creacion de cuenta</h1>
+    <h1>Creación de cuenta</h1>
     <br>
     <br>
+
     <ion-item>
-      <ion-input [(ngModel)]="nombre" name="nombre" label="Nombre" label-placement="floating" fill="outline" placeholder="Ingrese su nombre"></ion-input>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="nombre" name="nombre" fill="outline" placeholder="Ingrese su nombre" required></ion-input>
     </ion-item>
     <br>
+
     <ion-item>
-      <ion-input [(ngModel)]="apellidoPaterno" name="apellidoPaterno" label="Apellido Paterno" label-placement="floating" fill="outline" placeholder="Ingrese primer apellido"></ion-input>
+      <ion-label position="floating">Apellido Paterno</ion-label>
+      <ion-input [(ngModel)]="apellidoPaterno" name="apellidoPaterno" fill="outline" placeholder="Ingrese su primer apellido" required></ion-input>
     </ion-item>
     <br>
+
     <ion-item>
-      <ion-input [(ngModel)]="apellidoMaterno" name="apellidoMaterno" label="Apellido Materno" label-placement="floating" fill="outline" placeholder="Ingrese segundo apellido"></ion-input>
+      <ion-label position="floating">Apellido Materno</ion-label>
+      <ion-input [(ngModel)]="apellidoMaterno" name="apellidoMaterno" fill="outline" placeholder="Ingrese su segundo apellido"></ion-input>
     </ion-item>
     <br>
+
     <ion-item>
-      <ion-input [(ngModel)]="rut" name="rut" label="Rut" label-placement="floating" fill="outline" placeholder="Rut sin puntos y con digito verificador"></ion-input>
+      <ion-label position="floating">Rut</ion-label>
+      <ion-input [(ngModel)]="rut" name="rut" fill="outline" placeholder="Ingrese su RUT (sin puntos y con dígito verificador)" required></ion-input>
     </ion-item>
     <br>
+
     <ion-item>
-      <ion-input [(ngModel)]="email" name="email" label="Correo Electrónico" label-placement="floating" fill="outline" type="email" placeholder="Ingrese su correo"></ion-input>
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input [(ngModel)]="email" name="email" type="email" fill="outline" placeholder="Ingrese su correo electrónico" required></ion-input>
     </ion-item>
     <br>
+
     <ion-item>
-      <ion-input [(ngModel)]="password" name="password" label="Contraseña" label-placement="floating" fill="outline" type="password" placeholder="Ingrese su contraseña"></ion-input>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input [(ngModel)]="password" name="password" type="password" fill="outline" placeholder="Ingrese su contraseña" required></ion-input>
     </ion-item>
     <br>
+
     <ion-item>
       <ion-label>Pregunta Secreta</ion-label>
-      <ion-select [(ngModel)]="preguntaSecreta" name="preguntaSecreta" placeholder="Selecciona una opción">
+      <ion-select [(ngModel)]="preguntaSecreta" name="preguntaSecreta" placeholder="Seleccione una pregunta" required>
         <ion-select-option value="colorFavorito">¿Cuál es tu color favorito?</ion-select-option>
         <ion-select-option value="nombreMascota">¿Cómo se llama tu primera mascota?</ion-select-option>
         <ion-select-option value="lugarNacimiento">¿En qué ciudad naciste?</ion-select-option>
       </ion-select>
     </ion-item>
     <br>
+
     <ion-item>
-      <ion-input [(ngModel)]="respuestaSecreta" name="respuestaSecreta" label="Respuesta secreta" label-placement="floating" fill="outline" type="password"placeholder="Ingrese su respuesta secreta"></ion-input>
+      <ion-label position="floating">Respuesta Secreta</ion-label>
+      <ion-input [(ngModel)]="respuestaSecreta" name="respuestaSecreta" type="password" fill="outline" placeholder="Ingrese su respuesta secreta" required></ion-input>
     </ion-item>
     <br>
+
     <ion-button expand="full" type="submit">Registrar</ion-button>
   </form>
 </ion-content>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';  // Asegúrate de importar Router
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';  // Importa HttpClient
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-registro',
@@ -17,11 +20,10 @@ export class RegistroPage implements OnInit {
   preguntaSecreta: string = '';
   respuestaSecreta: string = '';
 
-  // Inyecta el servicio Router en el constructor
-  constructor(private router: Router) { }
+  // Inyecta HttpClient y Router en el constructor
+  constructor(private router: Router, private http: HttpClient) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSelectChange(event: any) {
     console.log('Opción seleccionada:', event.detail.value);
@@ -30,26 +32,25 @@ export class RegistroPage implements OnInit {
   onRegister() {
     // Verificar si algún campo está vacío
     if (!this.nombre || !this.apellidoPaterno || !this.apellidoMaterno || !this.rut || !this.email || !this.password || !this.preguntaSecreta || !this.respuestaSecreta) {
-      // Mostrar un mensaje de error si algún campo está vacío
       alert('Por favor, complete todos los campos antes de registrar.');
-      return; // Detener la ejecución si hay campos vacíos
+      return;
     }
-  
+
     // Validar formato del correo electrónico
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(this.email)) {
       alert('Por favor, ingrese un correo electrónico válido.');
       return;
     }
-  
+
     // Validar contraseña: al menos 8 caracteres y debe ser alfanumérica
     const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
     if (!passwordPattern.test(this.password)) {
       alert('La contraseña debe tener al menos 8 caracteres y debe ser alfanumérica.');
       return;
     }
-  
-    // Guardar los datos en Local Storage
+
+    // Datos del usuario
     const usuario = {
       nombre: this.nombre,
       apellidoPaterno: this.apellidoPaterno,
@@ -60,15 +61,24 @@ export class RegistroPage implements OnInit {
       preguntaSecreta: this.preguntaSecreta,
       respuestaSecreta: this.respuestaSecreta
     };
-  
-    // Guardamos el objeto del usuario en Local Storage
-    localStorage.setItem('usuario', JSON.stringify(usuario));
-  
-    // Mensaje de confirmación
-    alert('Registro exitoso. Ahora puede iniciar sesión.');
-    
-    // Redirigir a la página de inicio
-    this.router.navigate(['/home']);
+
+    // Hacer la solicitud POST a la API para registrar al usuario
+    this.http.post('http://URL_DE_TU_API/registrar', usuario)
+      .pipe(
+        catchError(error => {
+          // Manejo de errores
+          alert('Ocurrió un error durante el registro.');
+          return throwError(error);
+        })
+      )
+      .subscribe(response => {
+        // Suponiendo que la respuesta contiene información sobre el éxito o fallo del registro
+        if (response && response['isValid']) {
+          alert('Registro exitoso. Ahora puede iniciar sesión.');
+          this.router.navigate(['/home']);  // Redirige a la página de inicio o login
+        } else {
+          alert('Error en el registro. Por favor, intente nuevamente.');
+        }
+      });
   }
-  
-}  
+}
