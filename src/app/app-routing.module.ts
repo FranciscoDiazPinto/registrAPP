@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'index2',
     loadChildren: () => import('./index2/index2.module').then( m => m.Index2PageModule)
   },
+  {
+    path: 'asistencia',
+    loadChildren: () => import('./asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
+  },
 
 ];
 
