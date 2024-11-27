@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { AsistenciaPageRoutingModule } from './asistencia-routing.module';
 import { AsistenciaPage } from './asistencia.page';
-import { QrScannerComponent } from '../qr-scanner/qr-scanner.component';  // Importa el componente
 
 @NgModule({
   imports: [
@@ -14,6 +13,6 @@ import { QrScannerComponent } from '../qr-scanner/qr-scanner.component';  // Imp
     IonicModule,
     AsistenciaPageRoutingModule
   ],
-  declarations: [AsistenciaPage, QrScannerComponent]  // Declara solo en este módulo
+  declarations: [AsistenciaPage]  // Declara solo en este módulo
 })
 export class AsistenciaPageModule {}
