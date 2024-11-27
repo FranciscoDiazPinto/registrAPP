@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BarcodeScanner } from '@capacitor/barcode-scanner';
+import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
 
 @Component({
   selector: 'app-qr-scanner',
@@ -7,12 +7,14 @@ import { BarcodeScanner } from '@capacitor/barcode-scanner';
   styleUrls: ['./qr-scanner.component.scss'],
 })
 export class QrScannerComponent {
+  scanResult: string = ''; // Variable para almacenar el resultado del escaneo
+
   constructor() {}
 
   async startScan() {
     try {
       // Verificar permisos antes de iniciar el escaneo
-      const status = await BarcodeScanner.checkPermission({ force: true });
+      const status = await CapacitorBarcodeScanner.checkPermission({ force: true });
 
       if (!status.granted) {
         console.log('Permiso no concedido');
@@ -20,17 +22,18 @@ export class QrScannerComponent {
       }
 
       // Ocultar la interfaz de usuario para preparar el escaneo
-      BarcodeScanner.hideBackground();
+      CapacitorBarcodeScanner.hideBackground();
 
       // Iniciar el escaneo
-      const result = await BarcodeScanner.startScan();
+      const result = await CapacitorBarcodeScanner.startScan();
 
       // Detener el escaneo y mostrar la interfaz nuevamente
-      BarcodeScanner.showBackground();
+      CapacitorBarcodeScanner.showBackground();
 
       // Verificar si el resultado tiene contenido
       if (result.hasContent) {
-        console.log('Código escaneado: ', result.content);
+        this.scanResult = result.content;  // Almacenar el resultado
+        console.log('Código escaneado: ', this.scanResult);
       } else {
         console.log('No se detectó contenido en el código escaneado');
       }
@@ -38,13 +41,13 @@ export class QrScannerComponent {
       console.error('Error al intentar escanear el código: ', error);
 
       // Asegurarse de mostrar la interfaz en caso de error
-      BarcodeScanner.showBackground();
+      CapacitorBarcodeScanner.showBackground();
     }
   }
 
   stopScan() {
     try {
-      BarcodeScanner.stopScan();
+      CapacitorBarcodeScanner.stopScan();
       console.log('Escaneo detenido');
     } catch (error) {
       console.error('Error al detener el escaneo: ', error);
