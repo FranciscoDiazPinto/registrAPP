@@ -7,34 +7,24 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
   styleUrls: ['./qr-scanner.component.scss'],
 })
 export class QrScannerComponent {
-
   constructor() {}
 
   async startScan() {
-    try {
-      // Solicitar permisos
-      await BarcodeScanner.requestPermissions();
-
-      // Iniciar el escaneo
+    const status = await BarcodeScanner.checkPermission({ force: true });
+    if (status.granted) {
+      BarcodeScanner.hideBackground();
       const result = await BarcodeScanner.startScan();
-
       if (result.hasContent) {
-        console.log('Resultado del escaneo: ', result.content);
+        console.log(result.content);
       }
-    } catch (error) {
-      console.error('Error al escanear: ', error);
+    } else {
+      console.error('Permiso de escaneo no concedido');
     }
   }
 
-  async stopScan() {
-    await BarcodeScanner.stopScan();
-  }
-
-  async hide() {
-    await BarcodeScanner.hideBackground();
-  }
-
-  async show() {
-    await BarcodeScanner.showBackground();
+  stopScan() {
+    BarcodeScanner.showBackground();
+    BarcodeScanner.stopScan();
+    console.log('Escaneo detenido');
   }
 }
