@@ -1,20 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Escaneo QR</ion-title>
+    <ion-title>QR Scanner</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- Botón para iniciar el escaneo -->
-  <ion-button expand="block" (click)="scanQRCode()">Escanear Código QR</ion-button>
+  <ion-button expand="full" (click)="scanQRCode()">Escanear QR</ion-button>
 
-  <!-- Mostrar el resultado del escaneo -->
-  <ion-card *ngIf="scanResult">
-    <ion-card-header>
-      <ion-card-title>Resultado del QR</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      {{ scanResult }}
-    </ion-card-content>
-  </ion-card>
+  <ion-text *ngIf="scanResult">
+    <h2>Resultado:</h2>
+    <p>{{ scanResult }}</p>
+  </ion-text>
 </ion-content>
