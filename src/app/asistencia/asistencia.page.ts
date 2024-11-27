@@ -9,7 +9,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class AsistenciaPage implements OnInit {
   isSupported = false; // Para verificar si el escáner es soportado
-  qrCodes: string[] = []; // Para almacenar los valores escaneados
+  qrCodes: string[] = []; // Para almacenar los códigos QR escaneados (registro de asistencia)
 
   constructor(private alertController: AlertController) {}
 
@@ -33,10 +33,12 @@ export class AsistenciaPage implements OnInit {
       const { barcodes } = await BarcodeScanner.scan();
       const qrCodes = barcodes
         .filter((barcode) => barcode.format === 'QR_CODE') // Filtra solo códigos QR
-        .map((barcode) => barcode.rawValue); // Extrae el contenido del código
+        .map((barcode) => barcode.rawValue); // Extrae el contenido del código QR
 
       if (qrCodes.length > 0) {
+        // Registra la asistencia agregando el código QR escaneado a la lista
         this.qrCodes.push(...qrCodes);
+        this.presentAssistanceRegisteredAlert(qrCodes); // Muestra un mensaje de éxito
       } else {
         this.presentNoQRCodeAlert();
       }
@@ -73,6 +75,15 @@ export class AsistenciaPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Error',
       message: 'Ocurrió un error al intentar escanear el código QR. Inténtalo de nuevo.',
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+  async presentAssistanceRegisteredAlert(qrCodes: string[]): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Asistencia Registrada',
+      message: `La asistencia del código QR ${qrCodes.join(', ')} ha sido registrada.`,
       buttons: ['OK'],
     });
     await alert.present();

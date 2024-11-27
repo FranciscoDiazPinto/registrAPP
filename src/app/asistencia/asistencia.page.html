@@ -6,18 +6,24 @@
     </ion-toolbar>
   </ion-header>
   
-   
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Escáner QR para Asistencia</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
   <ion-content>
     <ion-list>
       <ion-item *ngFor="let code of qrCodes">
         <ion-label>{{ code }}</ion-label>
       </ion-item>
     </ion-list>
-    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-      <ion-fab-button (click)="scanQRCode()" [disabled]="!isSupported">
+  
+    <!-- Botón flotante centrado -->
+    <ion-fab slot="fixed">
+      <ion-fab-button (click)="scanQRCode()" [disabled]="!isSupported" class="centered-fab-button">
         <ion-icon name="qr-code-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
   </ion-content>
   
-
