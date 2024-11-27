@@ -6,27 +6,27 @@
 
 <ion-content [fullscreen]="true">
   <div class="menu">
-    <!-- Tarjeta Registrar Asistencia -->
+    <!-- Tarjeta Escanear (ahora con enlace a "asistencia") -->
     <ion-card class="escanear">
-      <img alt="Registrar Asistencia" src="../../assets/Images/escanear.png" />
-      <ion-card-header>
-        <ion-card-title>Registrar Asistencia</ion-card-title>
-        <ion-card-subtitle>Detalles breves sobre esta opción.</ion-card-subtitle>
-      </ion-card-header>
+      <ion-router-link routerLink="/asistencia" style="text-decoration: none; color: inherit; display: block;">
+        <img alt="Registrar Asistencia" src="../../assets/Images/escanear.png" />
+        <ion-card-header>
+          <ion-card-title>Registrar Asistencia</ion-card-title>
+          <ion-card-subtitle>Detalles breves sobre esta opción.</ion-card-subtitle>
+        </ion-card-header>
+      </ion-router-link>
       <ion-card-content>
         Haz clic para registrar la asistencia mediante escaneo.
       </ion-card-content>
     </ion-card>
 
-    <!-- Tarjeta Horario -->
+    <!-- Tarjeta Horario (sin enlace) -->
     <ion-card class="calendario">
-      <ion-router-link routerLink="/asistencia" style="text-decoration: none; color: inherit; display: block;">
-        <img alt="Horario" src="../../assets/Images/calendario.png" />
-        <ion-card-header>
-          <ion-card-title>Horario</ion-card-title>
-          <ion-card-subtitle>Consulta tu horario.</ion-card-subtitle>
-        </ion-card-header>
-      </ion-router-link>
+      <img alt="Horario" src="../../assets/Images/calendario.png" />
+      <ion-card-header>
+        <ion-card-title>Horario</ion-card-title>
+        <ion-card-subtitle>Consulta tu horario.</ion-card-subtitle>
+      </ion-card-header>
     </ion-card>
 
     <!-- Tarjeta Cerrar Sesión -->
