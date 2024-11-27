@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { BarcodeScanner } from '@capacitor/barcode-scanner';
 
 @Component({
   selector: 'app-qr-scanner',
