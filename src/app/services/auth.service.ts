@@ -1,29 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  constructor() {}
 
-  private apiUrl = 'https://registr-api.fly.dev';  // URL base de la API
+  login(username: string, password: string): Observable<any> {
+    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+    const usuario = usuarios.find(
+      (u: any) => u.email === username && u.password === password
+    );
 
-  constructor(private http: HttpClient) { }
-
-  // Método para hacer login
-  login(username: string, password: string, groupId: number): Observable<any> {
-    const url = `${this.apiUrl}/user/login`;  // Endpoint para login
-    const body = {
-      username: username,
-      password: password,
-      groupId: groupId  // El groupId que se usará (en este caso 10)
-    };
-    
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-
-    return this.http.post(url, body, { headers });
+    if (usuario) {
+      return of(usuario); // Devuelve el usuario encontrado
+    } else {
+      throw new Error('Usuario o contraseña incorrectos');
+    }
   }
 }
