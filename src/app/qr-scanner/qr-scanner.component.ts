@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';  // Asegúrate de que esta importación sea correcta
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
 @Component({
   selector: 'app-qr-scanner',
@@ -8,30 +8,33 @@ import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';  // Asegú
 })
 export class QrScannerComponent {
 
-  constructor() { }
+  constructor() {}
 
-  async startScanning() {
+  async startScan() {
     try {
-      // Solicitar permisos para la cámara
-      await CapacitorBarcodeScanner.requestPermissions();
+      // Solicitar permisos
+      await BarcodeScanner.requestPermissions();
 
-      // Iniciar escaneo
-      const result = await CapacitorBarcodeScanner.startScan();
+      // Iniciar el escaneo
+      const result = await BarcodeScanner.startScan();
 
       if (result.hasContent) {
-        // Mostrar el contenido escaneado
-        console.log('Contenido del QR:', result.content);
-        alert('Código escaneado: ' + result.content);
-      } else {
-        console.log('No se detectó ningún código.');
+        console.log('Resultado del escaneo: ', result.content);
       }
     } catch (error) {
-      console.error('Error al escanear:', error);
-      alert('Hubo un error al intentar escanear el código');
+      console.error('Error al escanear: ', error);
     }
   }
 
-  stopScanning() {
-    CapacitorBarcodeScanner.stopScan(); // Detener el escáner si es necesario
+  async stopScan() {
+    await BarcodeScanner.stopScan();
+  }
+
+  async hide() {
+    await BarcodeScanner.hideBackground();
+  }
+
+  async show() {
+    await BarcodeScanner.showBackground();
   }
 }
