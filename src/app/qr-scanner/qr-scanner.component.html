@@ -5,8 +5,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-button expand="full" (click)="startScan()">Iniciar Escaneo</ion-button>
-  <ion-button expand="full" (click)="stopScan()">Detener Escaneo</ion-button>
-  
-
+  <ion-button (click)="scanQRCode()">Escanear QR</ion-button>
+  <ion-text *ngIf="scanResult">
+    Resultado: {{ scanResult }}
+  </ion-text>
 </ion-content>
