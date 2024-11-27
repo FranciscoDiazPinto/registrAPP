@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-qr-scanner',
@@ -7,50 +8,61 @@ import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
   styleUrls: ['./qr-scanner.component.scss'],
 })
 export class QrScannerComponent {
-  scanResult: string = ''; // Variable para almacenar el resultado del escaneo
+  scanResult: string | null = null;
 
-  constructor() {}
+  constructor(private alertController: AlertController) {}
 
-  async startScan() {
+  // Solicitar permisos y escanear
+  async scanQRCode(): Promise<void> {
     try {
-      // Verificar permisos antes de iniciar el escaneo
-      const status = await CapacitorBarcodeScanner.checkPermission({ force: true });
-
-      if (!status.granted) {
-        console.log('Permiso no concedido');
+      // Verificar si el dispositivo soporta escaneo
+      const supported = await CapacitorBarcodeScanner.isSupported();
+      if (!supported) {
+        await this.presentAlert(
+          'No Compatible',
+          'Tu dispositivo no soporta el escaneo de códigos QR.'
+        );
         return;
       }
 
-      // Ocultar la interfaz de usuario para preparar el escaneo
-      CapacitorBarcodeScanner.hideBackground();
+      // Solicitar permisos
+      const { granted } = await CapacitorBarcodeScanner.requestPermissions();
+      if (!granted) {
+        await this.presentAlert(
+          'Permiso Denegado',
+          'No se concedió permiso para usar la cámara.'
+        );
+        return;
+      }
 
       // Iniciar el escaneo
-      const result = await CapacitorBarcodeScanner.startScan();
+      const result = await CapacitorBarcodeScanner.scanBarcode({
+        targetFormats: ['QR_CODE'], // Específicamente para QR
+      });
 
-      // Detener el escaneo y mostrar la interfaz nuevamente
-      CapacitorBarcodeScanner.showBackground();
-
-      // Verificar si el resultado tiene contenido
+      // Manejar el resultado
       if (result.hasContent) {
-        this.scanResult = result.content;  // Almacenar el resultado
-        console.log('Código escaneado: ', this.scanResult);
+        this.scanResult = result.content; // Guardar el resultado del QR
+        console.log('Código QR escaneado:', result.content);
       } else {
-        console.log('No se detectó contenido en el código escaneado');
+        this.scanResult = 'No se detectó ningún contenido en el QR.';
       }
     } catch (error) {
-      console.error('Error al intentar escanear el código: ', error);
-
-      // Asegurarse de mostrar la interfaz en caso de error
-      CapacitorBarcodeScanner.showBackground();
+      console.error('Error durante el escaneo:', error);
+      await this.presentAlert(
+        'Error',
+        'Ocurrió un problema durante el escaneo. Intenta nuevamente.'
+      );
     }
   }
 
-  stopScan() {
-    try {
-      CapacitorBarcodeScanner.stopScan();
-      console.log('Escaneo detenido');
-    } catch (error) {
-      console.error('Error al detener el escaneo: ', error);
-    }
+  // Mostrar alertas personalizadas
+  async presentAlert(header: string, message: string): Promise<void> {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK'],
+    });
+    await alert.present();
   }
 }
