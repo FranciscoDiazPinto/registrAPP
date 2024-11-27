@@ -1,53 +1,44 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <img  src="../../assets/Images/LOGOblanco.png" class="logo">
-    <ion-item>
-      <ion-label> </ion-label>
-    </ion-item>
-    
-
+    <img src="../../assets/Images/LOGOblanco.png" class="logo" alt="Logo" />
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <br>
-  <br>  
-<div class="menu">
-<ion-card class="escanear">
-  <img alt="Silhouette of mountains" src="../../assets/Images/escanear.png" />
-  <ion-card-header>
-    <ion-card-title>Registrar Asistencia</ion-card-title>
-    <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-  </ion-card-header>
+  <div class="menu">
+    <!-- Tarjeta Registrar Asistencia -->
+    <ion-card class="escanear">
+      <img alt="Registrar Asistencia" src="../../assets/Images/escanear.png" />
+      <ion-card-header>
+        <ion-card-title>Registrar Asistencia</ion-card-title>
+        <ion-card-subtitle>Detalles breves sobre esta opción.</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        Haz clic para registrar la asistencia mediante escaneo.
+      </ion-card-content>
+    </ion-card>
 
-  <ion-card-content>
-    Here's a small text description for the card content. Nothing more, nothing less.
-  </ion-card-content>
-</ion-card>
+    <!-- Tarjeta Horario -->
+    <ion-card class="calendario">
+      <ion-router-link routerLink="/asistencia" style="text-decoration: none; color: inherit; display: block;">
+        <img alt="Horario" src="../../assets/Images/calendario.png" />
+        <ion-card-header>
+          <ion-card-title>Horario</ion-card-title>
+          <ion-card-subtitle>Consulta tu horario.</ion-card-subtitle>
+        </ion-card-header>
+      </ion-router-link>
+    </ion-card>
 
-<ion-card class="calendario">
-  <img alt="Silhouette of mountains" src="../../assets/Images/calendario.png" />
-  <ion-card-header>
-    <ion-card-title>Horario</ion-card-title>
-    <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-  </ion-card-header>
-
-  <ion-card-content>
-    Here's a small text description for the card content. Nothing more, nothing less.
-  </ion-card-content>
-</ion-card>
-
-
-<ion-card class="enchufe">
-  <img alt="Log Off" src="../../assets/Images/enchufe.png" />
-  <ion-card-header>
-    <ion-card-title> Cerrar Sesión </ion-card-title>
-    <ion-card-subtitle>Card subtitle</ion-card-subtitle>
-  </ion-card-header>
-
-  <ion-card-content>
-    Here's a small text description for the card content. Nothing more, nothing less.
-  </ion-card-content>
-</ion-card>
-</div>>
+    <!-- Tarjeta Cerrar Sesión -->
+    <ion-card class="enchufe">
+      <img alt="Cerrar Sesión" src="../../assets/Images/enchufe.png" />
+      <ion-card-header>
+        <ion-card-title>Cerrar Sesión</ion-card-title>
+        <ion-card-subtitle>Salir de la aplicación.</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        Haz clic para cerrar sesión de manera segura.
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
