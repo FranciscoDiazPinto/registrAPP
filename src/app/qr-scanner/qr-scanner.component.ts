@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BarcodeScanner } from '@capacitor/barcode-scanner';
+import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';  // Usa CapacitorBarcodeScanner
 
 @Component({
   selector: 'app-qr-scanner',
@@ -13,10 +13,10 @@ export class QrScannerComponent {
   async startScanning() {
     try {
       // Solicitar permisos para la cámara
-      await BarcodeScanner.requestPermissions();
+      await CapacitorBarcodeScanner.requestPermissions();
 
       // Iniciar escaneo
-      const result = await BarcodeScanner.startScan();
+      const result = await CapacitorBarcodeScanner.startScan();
 
       if (result.hasContent) {
         // Mostrar el contenido escaneado
@@ -32,6 +32,6 @@ export class QrScannerComponent {
   }
 
   stopScanning() {
-    BarcodeScanner.stopScan(); // Detener el escáner si es necesario
+    CapacitorBarcodeScanner.stopScan(); // Detener el escáner si es necesario
   }
 }

@@ -8,8 +8,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
+import { QrScannerComponent } from './qr-scanner/qr-scanner.component';
+
+
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, QrScannerComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
