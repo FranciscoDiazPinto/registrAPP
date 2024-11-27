@@ -10,4 +10,20 @@
       <ion-title size="large">profesor</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="ion-padding">
+    <!-- Input para texto del QR -->
+    <ion-item>
+      <ion-label position="stacked">Texto del QR</ion-label>
+      <ion-input [(ngModel)]="qrData" placeholder="Escribe el contenido del QR"></ion-input>
+    </ion-item>
+
+    <!-- Botón para generar QR -->
+    <ion-button expand="full" (click)="generateQR()">Generar QR</ion-button>
+
+    <!-- Imagen del QR generado -->
+    <div *ngIf="qrCodeUrl" class="qr-container">
+      <img [src]="qrCodeUrl" alt="Código QR generado">
+    </div>
+  </div>
 </ion-content>
