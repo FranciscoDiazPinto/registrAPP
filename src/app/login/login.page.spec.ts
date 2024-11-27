@@ -1,17 +1,43 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LoginPage } from './login.page';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
-describe('LoginPage', () => {
-  let component: LoginPage;
-  let fixture: ComponentFixture<LoginPage>;
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+})
+export class LoginPage implements OnInit {
+  username: string = '';
+  password: string = '';
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoginPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  constructor(private router: Router, private authService: AuthService) {}
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  ngOnInit() {}
+
+  onLogin() {
+    if (!this.username || !this.password) {
+      alert('Por favor, complete todos los campos.');
+      return;
+    }
+
+    this.authService.login(this.username, this.password).subscribe({
+      next: (usuario) => {
+        alert(`Bienvenido ${usuario.nombre}`);
+        // Redirigir según el rol
+        if (usuario.rol === 'Profesor') {
+          this.router.navigate(['/profesor']); // Vista para profesor
+        } else if (usuario.rol === 'Alumno') {
+          this.router.navigate(['/index2']); // Vista para alumno
+        } else {
+          alert('Rol no reconocido.');
+        }
+      },
+      error: (err) => {
+        console.error('Error de login:', err);
+        alert('Usuario o contraseña incorrectos');
+      },
+    });
+  }
+}
+ 

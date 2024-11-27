@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
         if (usuario.rol === 'Profesor') {
           this.router.navigate(['/profesor']);
         } else if (usuario.rol === 'Alumno') {
-          this.router.navigate(['/alumno']);
+          this.router.navigate(['/index2']); // Cambiar redirección para alumnos
         } else {
           alert('Rol no reconocido.');
         }
